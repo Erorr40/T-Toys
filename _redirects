@@ -1,0 +1,40 @@
+/login          /frontend/login/index.html          200
+/login/*        /frontend/login/index.html          200
+
+/signup         /frontend/signup/index.html         200
+/signup/*       /frontend/signup/index.html         200
+
+/verify         /frontend/verify/index.html         200
+/verify/*       /frontend/verify/index.html         200
+
+/dev            /frontend/dev/index.html            200
+/dev/*          /frontend/dev/index.html            200
+
+/Home           /frontend/Home/index.html           200
+/Home/*         /frontend/Home/index.html           200
+/Shop           /frontend/Shop/index.html           200
+/Shop/*         /frontend/Shop/index.html           200
+/Cart           /frontend/Cart/index.html           200
+/Cart/*         /frontend/Cart/index.html           200
+/Orders         /frontend/Orders/index.html         200
+/Orders/*       /frontend/Orders/index.html         200
+/Wishlist       /frontend/Wishlist/index.html       200
+/Wishlist/*     /frontend/Wishlist/index.html       200
+/Profile        /frontend/Profile/index.html        200
+/Profile/*      /frontend/Profile/index.html        200
+/Rewards        /frontend/Rewards/index.html        200
+/Rewards/*      /frontend/Rewards/index.html        200
+/ToyQuiz        /frontend/ToyQuiz/index.html        200
+/ToyQuiz/*      /frontend/ToyQuiz/index.html        200
+/TrackOrder     /frontend/TrackOrder/index.html     200
+/TrackOrder/*   /frontend/TrackOrder/index.html     200
+/Notifications  /frontend/Notifications/index.html  200
+/Notifications/* /frontend/Notifications/index.html 200
+/ParentingTips  /frontend/ParentingTips/index.html  200
+/ParentingTips/* /frontend/ParentingTips/index.html 200
+/ProductDetails /frontend/ProductDetails/index.html 200
+/ProductDetails/* /frontend/ProductDetails/index.html 200
+
+# Fallback for any other route
+/*              /frontend/index.html                200
+

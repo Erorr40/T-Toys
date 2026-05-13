@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="T for Toys">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD93D"/>
+      <stop offset="50%" stop-color="#FF9F43"/>
+      <stop offset="100%" stop-color="#FF6B9D"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="120" fill="#FFF9F0"/>
+  <circle cx="116" cy="112" r="28" fill="#6EC6FF"/>
+  <circle cx="398" cy="104" r="22" fill="#A78BFA"/>
+  <circle cx="414" cy="394" r="26" fill="#4ECDC4"/>
+  <circle cx="112" cy="404" r="20" fill="#FF9F43"/>
+  <path d="M128 156h256c13.3 0 24 10.7 24 24v20H282v144c0 13.3-10.7 24-24 24h-24c-13.3 0-24-10.7-24-24V200H104v-20c0-13.3 10.7-24 24-24Z" fill="url(#g)"/>
+  <path d="M208 344h96c13.3 0 24 10.7 24 24v8c0 13.3-10.7 24-24 24h-96c-13.3 0-24-10.7-24-24v-8c0-13.3 10.7-24 24-24Z" fill="#3B8FD4" opacity=".9"/>
+  <path d="M184 172h144c14.9 0 27 12.1 27 27v8H157v-8c0-14.9 12.1-27 27-27Z" fill="#fff" opacity=".85"/>
+</svg>

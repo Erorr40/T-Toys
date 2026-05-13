@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  ttoys:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5099:5099"
+    volumes:
+      - ./backend/data:/data
+    environment:
+      - PORT=5099
+      - DB_FILE=/data/ttoys.db
+      - CORS_ALLOWED_ORIGINS=*
+    restart: unless-stopped

@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <script>
+    window.location.replace('https://tots-toy-fun.base44.app/login?from_url=' + encodeURIComponent(window.location.origin + '/'));
+  </script>
+</head>
+<body>
+  <p>Redirecting to login...</p>
+  <p><a href="https://tots-toy-fun.base44.app/login">Continue</a></p>
+</body>
+</html>

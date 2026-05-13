@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <script>
+    // Prefer the SPA internal /login route.
+    // If the SPA doesn't have it, the app's 404/fallback should handle it.
+    var fromUrl = window.location.origin + '/';
+    window.location.replace('/login?from_url=' + encodeURIComponent(fromUrl));
+  </script>
+</head>
+<body>
+  <p>Redirecting to login...</p>
+  <p><a href="/login">Continue</a></p>
+</body>
+</html>

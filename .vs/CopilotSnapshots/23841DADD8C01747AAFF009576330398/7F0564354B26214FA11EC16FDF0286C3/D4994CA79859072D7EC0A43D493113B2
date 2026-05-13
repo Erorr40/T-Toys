@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <link href="assets/toy-logo.svg" rel="icon" type="image/svg+xml"/>
+  <script>
+   (function () {
+    var path = window.location.pathname;
+    var base = "/";
+    if (path.indexOf("/frontend/") === 0) {
+      base = "/frontend/";
+    }
+    document.write('<base href="' + base + '">');
+   })();
+  </script>
+  <script>
+   (function () {
+    var path = window.location.pathname;
+    if (path.indexOf("/frontend/") === 0) {
+      var normalized = path.replace(/^\/frontend/, "") || "/";
+      if (normalized === "/index.html") normalized = "/";
+      if (normalized.endsWith("/index.html")) normalized = normalized.slice(0, -"index.html".length);
+      if (!normalized.endsWith("/") && path.endsWith("/")) normalized += "/";
+      window.history.replaceState({}, document.title, normalized + window.location.search + window.location.hash);
+    }
+   })();
+  </script>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="manifest.json" rel="manifest"/>
+  <title>
+   T for Toys
+  </title>
+  <script crossorigin="" src="assets/index-W5VVmgL8.localfix.js" type="module">
+  </script>
+  <link crossorigin="" href="assets/index-C3Qqn4e8.css" rel="stylesheet"/>
+  <script type="module">
+   if (window.self === window.top) {
+  let lastPath = "";
+  function getPageNameFromPath(path) {
+    const segments = path.split("/").filter(Boolean);
+    return segments[0] || null;
+  }
+  function trackPageView() {
+    const path = window.location.pathname;
+    if (path === lastPath) return;
+    lastPath = path;
+    const pageName = getPageNameFromPath(path) || "home";
+    const appId = "699db9d22942c2facdf17ccb";
+    if (!appId) return;
+    fetch(`/app-logs/${appId}/log-user-in-app/${pageName}`, {
+      method: "POST",
+    }).catch(() => {});
+  }
+  const originalPushState = history.pushState.bind(history);
+  history.pushState = function (...args) {
+    originalPushState(...args);
+    trackPageView();
+  };
+  const originalReplaceState = history.replaceState.bind(history);
+  history.replaceState = function (...args) {
+    originalReplaceState(...args);
+    trackPageView();
+  };
+  window.addEventListener("popstate", trackPageView);
+  trackPageView();
+}
+  </script>
+  <meta content="An interactive e-commerce website for children’s toys, educational games, and group play toys. Designed to feel like a playful, colorful, and fun toy world, rather than a traditional online store, targeting parents and families." name="description"/>
+  <meta content="T for Toys" property="og:title"/>
+  <meta content="An interactive e-commerce website for children’s toys, educational games, and group play toys. Designed to feel like a playful, colorful, and fun toy world, rather than a traditional online store, targeting parents and families." property="og:description"/>
+  <meta content="assets/toy-logo.svg" property="og:image"/>
+  <meta content="https://tots-toy-fun.base44.app" property="og:url"/>
+  <meta content="website" property="og:type"/>
+  <meta content="T for Toys" property="og:site_name"/>
+  <meta content="T for Toys" name="twitter:title"/>
+  <meta content="An interactive e-commerce website for children’s toys, educational games, and group play toys. Designed to feel like a playful, colorful, and fun toy world, rather than a traditional online store, targeting parents and families." name="twitter:description"/>
+  <meta content="assets/toy-logo.svg" name="twitter:image"/>
+  <meta content="summary_large_image" name="twitter:card"/>
+  <meta content="https://tots-toy-fun.base44.app" name="twitter:url"/>
+  <meta content="yes" name="mobile-web-app-capable"/>
+  <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+  <meta content="T for Toys" name="apple-mobile-web-app-title"/>
+  <link href="https://tots-toy-fun.base44.app" rel="canonical"/>
+  <script async="true" data-app-id="699db9d22942c2facdf17ccb" data-app-name="T for Toys" data-platform-url="https://app.base44.com" src="static/js/badge.js">
+  </script>
+ </head>
+ <body>
+  <div id="root">
+  </div>
+ </body>
+</html>

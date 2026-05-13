@@ -1,0 +1,9 @@
+/login    /login/index.html   200
+/login/*  /login/index.html   200
+/signup   /signup/index.html  200
+/signup/* /signup/index.html  200
+/verify   /verify/index.html  200
+/verify/* /verify/index.html  200
+/dev      /dev/index.html     200
+/dev/*    /dev/index.html     200
+/*       /index.html         200
