@@ -10,12 +10,24 @@
       var params = new URLSearchParams(window.location.search);
       var appId = params.get('app_id') || '699db9d22942c2facdf17ccb';
       var appBase = params.get('app_base_url') || window.location.origin;
-      // Try platform logout endpoint, fallback to home
       var logoutUrl = 'https://app.base44.com/apps/' + encodeURIComponent(appId) + '/auth/logout?app_base_url=' + encodeURIComponent(appBase);
-      // Do a top-level navigation to ensure provider can clear cookies
-      window.location.replace(logoutUrl);
-      // If navigation fails or returns 404, fall back after timeout
-      setTimeout(function(){ window.location.replace(appBase || '/'); }, 3000);
+      var done = false;
+      function goHome() {
+        if (done) return;
+        done = true;
+        window.location.replace(appBase || '/');
+      }
+      setTimeout(goHome, 1200);
+      try {
+        fetch(logoutUrl, {
+          method: 'GET',
+          mode: 'no-cors',
+          credentials: 'include',
+          keepalive: true
+        }).finally(goHome);
+      } catch (e) {
+        goHome();
+      }
     })();
   </script>
 </head>
