@@ -261,9 +261,8 @@
       var originalText = submitBtn.textContent;
       submitBtn.textContent = "Signing in...";
 
-      var email = String(emailInput.value || "").trim();
       var payload = {
-        email: email,
+        email: String(emailInput.value || "").trim(),
         password: String(passwordInput.value || "")
       };
 
@@ -308,7 +307,8 @@
               errMsg.toLowerCase().includes("not verified")) {
             // Redirect to verification page with email pre-filled
             var verifyPath = basePath === "/frontend/" ? "/frontend/verify" : "/verify";
-            var verifyUrl = verifyPath + "?email=" + encodeURIComponent(email) + "&app_id=" + encodeURIComponent(appId);
+            var verifyEmail = String(emailInput.value || "").trim();
+            var verifyUrl = verifyPath + "?email=" + encodeURIComponent(verifyEmail) + "&app_id=" + encodeURIComponent(appId);
             window.location.href = verifyUrl;
             return;
           }
