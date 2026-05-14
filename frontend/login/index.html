@@ -304,17 +304,16 @@
           var errMsg = err && err.message ? err.message : "Login failed.";
           
           // Check if error is verification-related
-          if (errMsg.toLowerCase().includes("verify") || 
-              errMsg.toLowerCase().includes("verification") ||
-              errMsg.toLowerCase().includes("confirmed") ||
-              errMsg.toLowerCase().includes("not verified")) {
-            // Redirect to verification page with email pre-filled
-            var verifyPath = getRoutePath("verify");
-            var verifyEmail = String(emailInput.value || "").trim();
-            var verifyUrl = verifyPath + "?email=" + encodeURIComponent(verifyEmail) + "&app_id=" + encodeURIComponent(appId);
-            window.location.href = verifyUrl;
-            return;
-          }
+            if (errMsg.toLowerCase().includes("verify") || 
+                errMsg.toLowerCase().includes("verification") ||
+                errMsg.toLowerCase().includes("confirmed") ||
+                errMsg.toLowerCase().includes("not verified")) {
+              // Redirect to verification page with email pre-filled
+              var verifyPath = getRoutePath("verify");
+              var verifyUrl = verifyPath + "?email=" + encodeURIComponent(String(emailInput.value || "").trim()) + "&app_id=" + encodeURIComponent(appId);
+              window.location.href = verifyUrl;
+              return;
+            }
           
           if (errorEl) {
             errorEl.textContent = errMsg;
