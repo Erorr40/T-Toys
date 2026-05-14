@@ -8,7 +8,8 @@
     var url = new URL(window.location.href);
     var changed = false;
     if (!url.searchParams.get("app_base_url")) {
-     url.searchParams.set("app_base_url", "https://tots-toy-fun.base44.app");
+     var appBasePath = (window.location.pathname || "/").indexOf("/frontend/") === 0 ? "/frontend" : "";
+     url.searchParams.set("app_base_url", window.location.origin + appBasePath);
      changed = true;
     }
     if (changed) {
