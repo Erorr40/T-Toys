@@ -193,6 +193,9 @@
     var apiBase = "https://tots-toy-fun.base44.app/api";
     var basePath = window.location.pathname.indexOf("/frontend/") === 0 ? "/frontend/" : "/";
     var fallbackUrl = window.location.origin + basePath;
+    function getRoutePath(routeName) {
+      return basePath === "/frontend/" ? "/frontend/" + routeName : "/" + routeName;
+    }
     var fromParam = params.get("from_url");
     var fromUrl = fallbackUrl;
 
@@ -209,11 +212,6 @@
       backLink.setAttribute("href", fromUrl);
     }
 
-    var prefillEmail = params.get("prefill_email");
-    if (prefillEmail && emailInput) {
-      emailInput.value = decodeURIComponent(prefillEmail);
-    }
-
     var form = document.getElementById("login-form");
     var emailInput = document.getElementById("login-email");
     var passwordInput = document.getElementById("login-password");
@@ -221,6 +219,11 @@
     var submitBtn = document.getElementById("login-submit");
 
     if (!form || !emailInput || !passwordInput || !submitBtn) return;
+
+    var prefillEmail = params.get("prefill_email");
+    if (prefillEmail && emailInput) {
+      emailInput.value = decodeURIComponent(prefillEmail);
+    }
 
     var googleBtn = document.getElementById("login-google");
     if (googleBtn) {
@@ -245,7 +248,8 @@
         e.preventDefault();
         // Navigate to our logout page which will clear localStorage and call platform logout
         var appBase = new URL(window.location.href).searchParams.get('app_base_url') || window.location.origin;
-        window.location.href = '/logout?app_base_url=' + encodeURIComponent(appBase) + '&app_id=' + encodeURIComponent(appId);
+        var logoutPath = getRoutePath("logout");
+        window.location.href = logoutPath + '?app_base_url=' + encodeURIComponent(appBase) + '&app_id=' + encodeURIComponent(appId);
       });
     }
 
@@ -300,15 +304,16 @@
           var errMsg = err && err.message ? err.message : "Login failed.";
           
           // Check if error is verification-related
-          if (errMsg.toLowerCase().includes("verify") || 
-              errMsg.toLowerCase().includes("verification") ||
-              errMsg.toLowerCase().includes("confirmed") ||
-              errMsg.toLowerCase().includes("not verified")) {
-            // Redirect to verification page with email pre-filled
-            var verifyUrl = "/verify?email=" + encodeURIComponent(email);
-            window.location.href = verifyUrl;
-            return;
-          }
+            if (errMsg.toLowerCase().includes("verify") || 
+                errMsg.toLowerCase().includes("verification") ||
+                errMsg.toLowerCase().includes("confirmed") ||
+                errMsg.toLowerCase().includes("not verified")) {
+              // Redirect to verification page with email pre-filled
+              var verifyPath = getRoutePath("verify");
+              var verifyUrl = verifyPath + "?email=" + encodeURIComponent(String(emailInput.value || "").trim()) + "&app_id=" + encodeURIComponent(appId);
+              window.location.href = verifyUrl;
+              return;
+            }
           
           if (errorEl) {
             errorEl.textContent = errMsg;
