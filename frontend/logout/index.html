@@ -10,12 +10,27 @@
       var params = new URLSearchParams(window.location.search);
       var appId = params.get('app_id') || '699db9d22942c2facdf17ccb';
       var appBase = params.get('app_base_url') || window.location.origin;
-      // Try platform logout endpoint, fallback to home
       var logoutUrl = 'https://app.base44.com/apps/' + encodeURIComponent(appId) + '/auth/logout?app_base_url=' + encodeURIComponent(appBase);
-      // Do a top-level navigation to ensure provider can clear cookies
-      window.location.replace(logoutUrl);
-      // If navigation fails or returns 404, fall back after timeout
-      setTimeout(function(){ window.location.replace(appBase || '/'); }, 3000);
+      var done = false;
+      function goHome() {
+        if (done) return;
+        done = true;
+        window.location.replace(appBase || '/');
+      }
+      // Give the background logout ping enough time on slower/mobile networks.
+      setTimeout(goHome, 3000);
+      try {
+        // no-cors is intentional because this static page cannot rely on CORS response headers.
+        // We only need to trigger cookie/session clearing server-side as a best-effort.
+        fetch(logoutUrl, {
+          method: 'GET',
+          mode: 'no-cors',
+          credentials: 'include',
+          keepalive: true
+        }).catch(function () {});
+      } catch (e) {
+        // Ignore and continue to fallback redirect.
+      }
     })();
   </script>
 </head>
