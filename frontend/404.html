@@ -9,7 +9,7 @@
     var url = new URL(window.location.href);
     var changed = false;
     if (!url.searchParams.get("app_base_url")) {
-     var appBasePath = (window.location.pathname || "/").indexOf("/frontend/") === 0 ? "/frontend" : "";
+     var appBasePath = /^\/frontend(?:\/|$)/.test(window.location.pathname || "/") ? "/frontend" : "";
      url.searchParams.set("app_base_url", window.location.origin + appBasePath);
      changed = true;
     }
