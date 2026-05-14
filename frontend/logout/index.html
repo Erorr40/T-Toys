@@ -17,8 +17,11 @@
         done = true;
         window.location.replace(appBase || '/');
       }
+      // Give the background logout ping enough time on slower/mobile networks.
       setTimeout(goHome, 3000);
       try {
+        // no-cors is intentional because this static page cannot rely on CORS response headers.
+        // We only need to trigger cookie/session clearing server-side as a best-effort.
         fetch(logoutUrl, {
           method: 'GET',
           mode: 'no-cors',
