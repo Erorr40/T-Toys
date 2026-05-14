@@ -24,9 +24,9 @@
           mode: 'no-cors',
           credentials: 'include',
           keepalive: true
-        }).finally(goHome);
+        }).catch(function () {});
       } catch (e) {
-        goHome();
+        // Ignore and continue to fallback redirect.
       }
     })();
   </script>
