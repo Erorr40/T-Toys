@@ -193,6 +193,9 @@
     var apiBase = "https://tots-toy-fun.base44.app/api";
     var basePath = window.location.pathname.indexOf("/frontend/") === 0 ? "/frontend/" : "/";
     var fallbackUrl = window.location.origin + basePath;
+    function getRoutePath(routeName) {
+      return basePath === "/frontend/" ? "/frontend/" + routeName : "/" + routeName;
+    }
     var fromParam = params.get("from_url");
     var fromUrl = fallbackUrl;
 
@@ -245,7 +248,7 @@
         e.preventDefault();
         // Navigate to our logout page which will clear localStorage and call platform logout
         var appBase = new URL(window.location.href).searchParams.get('app_base_url') || window.location.origin;
-        var logoutPath = basePath === "/frontend/" ? "/frontend/logout" : "/logout";
+        var logoutPath = getRoutePath("logout");
         window.location.href = logoutPath + '?app_base_url=' + encodeURIComponent(appBase) + '&app_id=' + encodeURIComponent(appId);
       });
     }
@@ -306,7 +309,7 @@
               errMsg.toLowerCase().includes("confirmed") ||
               errMsg.toLowerCase().includes("not verified")) {
             // Redirect to verification page with email pre-filled
-            var verifyPath = basePath === "/frontend/" ? "/frontend/verify" : "/verify";
+            var verifyPath = getRoutePath("verify");
             var verifyEmail = String(emailInput.value || "").trim();
             var verifyUrl = verifyPath + "?email=" + encodeURIComponent(verifyEmail) + "&app_id=" + encodeURIComponent(appId);
             window.location.href = verifyUrl;

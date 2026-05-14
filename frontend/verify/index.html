@@ -103,6 +103,9 @@
     var appId = params.get("app_id") || "699db9d22942c2facdf17ccb";
     var apiBase = "https://tots-toy-fun.base44.app/api";
     var basePath = window.location.pathname.indexOf("/frontend/") === 0 ? "/frontend/" : "/";
+    function getRoutePath(routeName) {
+      return basePath === "/frontend/" ? "/frontend/" + routeName : "/" + routeName;
+    }
     
     var prefillEmail = params.get("email");
 
@@ -132,7 +135,12 @@
     var so = document.createElement('button');
     so.textContent = 'Sign out';
     so.className = 'text-xs text-gray-500 hover:underline';
-    so.addEventListener('click', function (e) { e.preventDefault(); var appBase = new URL(window.location.href).searchParams.get('app_base_url') || window.location.origin; var logoutPath = basePath === "/frontend/" ? "/frontend/logout" : "/logout"; window.location.href = logoutPath + '?app_base_url=' + encodeURIComponent(appBase) + '&app_id=' + encodeURIComponent(appId); });
+    so.addEventListener('click', function (e) {
+      e.preventDefault();
+      var appBase = new URL(window.location.href).searchParams.get('app_base_url') || window.location.origin;
+      var logoutPath = getRoutePath("logout");
+      window.location.href = logoutPath + '?app_base_url=' + encodeURIComponent(appBase) + '&app_id=' + encodeURIComponent(appId);
+    });
     signOutEl.appendChild(so);
     var container = document.querySelector('.min-h-screen .w-full') || document.body;
     if (container) container.parentNode.insertBefore(signOutEl, container.nextSibling);
