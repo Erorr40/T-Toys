@@ -4,6 +4,8 @@
 /signup/* /signup/index.html  200
 /verify   /verify/index.html  200
 /verify/* /verify/index.html  200
+/logout   /logout/index.html  200
+/logout/* /logout/index.html  200
 /dev      /dev/index.html     200
 /dev/*    /dev/index.html     200
 /*       /index.html         200
